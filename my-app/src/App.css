@@ -1,42 +1,212 @@
 #root {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 32px 24px 56px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.app-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.app-subtitle {
+  margin: 8px 0 0;
+  color: #556070;
+}
+
+.status-panel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #eef1f6;
+  color: #3a4453;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.connected {
+  background: #e0f2ff;
+  color: #1464b8;
+}
+
+.status-badge.speaking {
+  background: #ffe7d8;
+  color: #c45c21;
+}
+
+.status-text {
+  color: #6b7280;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 .card {
-  padding: 2em;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
 }
 
-.read-the-docs {
-  color: #888;
+.card h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.primary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.secondary {
+  background: #e2e8f0;
+  color: #1f2937;
+}
+
+.ghost {
+  background: transparent;
+  color: #1f2937;
+  border: 1px solid #cbd5f5;
+}
+
+.meta {
+  display: grid;
+  gap: 10px;
+}
+
+.meta-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.meta-value {
+  display: block;
+  margin-top: 4px;
+  font-weight: 600;
+  color: #111827;
+  word-break: break-all;
+}
+
+.error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.range-value {
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.log {
+  min-height: 240px;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f1f5f9;
+}
+
+.message.user {
+  background: #e0f2fe;
+}
+
+.message.agent {
+  background: #fef3c7;
+}
+
+.message.debug {
+  background: #f3e8ff;
+}
+
+.message-role {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.message-text {
+  color: #111827;
+}
+
+.message-meta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.empty {
+  color: #6b7280;
+  margin: 0;
 }
