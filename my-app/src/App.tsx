@@ -1,6 +1,6 @@
 import { useConversation } from '@elevenlabs/react'
 import { useMemo, useState } from 'react'
-import './App.css'
+import './css/App.css'
 
 type ConnectionType = 'webrtc' | 'websocket'
 type MessageRole = 'user' | 'agent' | 'debug' | 'system'
@@ -78,7 +78,12 @@ const buildErrorText = (error: unknown): string => {
   return JSON.stringify(error)
 }
 
+/**
+ * App コンポーネント
+ * @returns JSX.Element
+ */
 function App() {
+  // Eleven Labsのダッシュボードで作成したAgent ID
   const agentIdFromEnv =
     typeof import.meta.env.VITE_ELEVENLABS_AGENT_ID === 'string'
       ? import.meta.env.VITE_ELEVENLABS_AGENT_ID
@@ -97,6 +102,7 @@ function App() {
   const [messages, setMessages] = useState<MessageItem[]>([])
   const [inputText, setInputText] = useState('')
 
+  // useConversation フックを使用して会話の状態とイベントハンドラーを管理
   const conversation = useConversation({
     micMuted,
     volume: volumeRate,
@@ -125,6 +131,7 @@ function App() {
     () => Boolean(conversation.canSendFeedback),
     [conversation.canSendFeedback],
   )
+  // 会話が現在話しているかどうかを判定するためのフラグ
   const isSpeaking = useMemo(
     () => Boolean(conversation.isSpeaking),
     [conversation.isSpeaking],
@@ -133,6 +140,7 @@ function App() {
   const handleRequestMic = async (): Promise<void> => {
     setErrorText('')
     try {
+      // マイクの使用許可をリクエストし、許可された場合は状態を更新
       await navigator.mediaDevices.getUserMedia({ audio: true })
       setMicReady(true)
     } catch (error: unknown) {
@@ -151,6 +159,7 @@ function App() {
         await navigator.mediaDevices.getUserMedia({ audio: true })
         setMicReady(true)
       }
+      // セッションを開始し、会話IDを取得して状態に保存
       const newConversationId = await conversation.startSession({
         agentId: agentIdFromEnv,
         connectionType,
@@ -165,6 +174,7 @@ function App() {
   const handleEndSession = async (): Promise<void> => {
     setErrorText('')
     try {
+      // セッションを終了し、会話IDを状態からクリアする
       await conversation.endSession()
     } catch (error: unknown) {
       setErrorText(buildErrorText(error))
